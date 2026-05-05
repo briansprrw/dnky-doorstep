@@ -139,6 +139,12 @@ function pageHeader() {
 
 function homePage(env = {}) {
   const email = env.EMAIL || EMAIL;
+
+  // Format footer: if it looks like a domain (has period, no spaces), make it a link
+  const footerText = FOOTER_TEXT;
+  const isDomain = footerText.includes('.') && !footerText.includes(' ');
+  const footerHtml = isDomain ? `<a href="https://${footerText}" target="_blank" rel="noopener noreferrer">${footerText}</a>` : footerText;
+
   const skillPills = FEATURED_SKILLS
     .map(s => `<span class="skill-pill">${s}</span>`)
     .join("");
@@ -449,7 +455,7 @@ function homePage(env = {}) {
     ${linkCards}
 
   </div>
-  <footer>${FOOTER_TEXT}</footer>
+  <footer>${footerHtml}</footer>
   <script>
     // Email obfuscated — decoded from base64 only at click time, never in the DOM
     function handleEmailClick(e) {

@@ -1,6 +1,8 @@
 # Dnky Doorstep
 
-A fast, fully-customizable personal website template built with Cloudflare Workers. All your data lives in one config file-no databases, no build steps, just pure speed.
+A fast, fully-customizable personal website template built with Cloudflare Workers. All your data lives in one config file: no databases, no build steps, just pure speed.
+
+**Live demo**: https://briansprrw.com
 
 ## Features
 
