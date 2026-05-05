@@ -1,7 +1,20 @@
 {
   "name": "dnky-doorstep",
   "version": "1.0.0",
-  "private": true,
+  "description": "A fast, customizable personal website template built with Cloudflare Workers",
+  "author": "Brian Sparrow",
+  "license": "Non-Commercial",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/briansprrw/dnky-doorstep.git"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "personal-website",
+    "portfolio",
+    "template"
+  ],
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"
