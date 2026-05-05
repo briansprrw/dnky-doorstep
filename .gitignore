@@ -1,0 +1,12 @@
+node_modules/
+package-lock.json
+.wrangler/
+.DS_Store
+.dev.vars
+*.local
+archive/
+index-archive.js
+*.pdf
+*.jpeg
+*.jpg
+*.png
