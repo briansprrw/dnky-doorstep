@@ -123,7 +123,7 @@ function pageHeader() {
   return `
     <div class="page-header">
       <h1>${NAME}</h1>
-      <p class="subtitle">${SUBTITLE}</p>
+      <p class="subtitle">${SUBTITLE.replace(/\n/g, '<br>')}</p>
       <p class="location">${LOCATION}</p>
     </div>`;
 }
@@ -440,7 +440,7 @@ function homePage(env = {}) {
     <div class="bc bc-profile">
       <img src="${AVATAR_URL}" alt="${NAME}" class="profile-photo" />
       <h1 class="profile-name">${NAME}</h1>
-      <p class="profile-motto">${SUBTITLE}</p>
+      <p class="profile-motto">${SUBTITLE.replace(/\n/g, '<br>')}</p>
       <p class="profile-bio">${BIO}</p>
       <div class="profile-footer">
         <p class="profile-location">${LOCATION}</p>
@@ -460,7 +460,23 @@ function homePage(env = {}) {
     // Email obfuscated — decoded from base64 only at click time, never in the DOM
     function handleEmailClick(e) {
       e.preventDefault();
-      window.location.href = 'mailto:' + atob('${btoa(email)}');
+      const addr = atob('${btoa(email)}');
+      const a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      if (navigator.clipboard) {
+        const el = e.currentTarget;
+        navigator.clipboard.writeText(addr).then(() => {
+          const tip = document.createElement('span');
+          tip.textContent = 'Copied!';
+          tip.style.cssText = 'position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:${THEME.accent};color:#fff;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;white-space:nowrap;pointer-events:none;box-shadow:0 2px 12px rgba(0,0,0,0.6);';
+          el.style.position = 'relative';
+          el.appendChild(tip);
+          setTimeout(() => tip.remove(), 1500);
+        });
+      }
     }
   </script>
 </body>
