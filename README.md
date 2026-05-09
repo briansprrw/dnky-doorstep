@@ -9,7 +9,7 @@ A fast, fully-customizable personal website template built with Cloudflare Worke
 - **Bento grid home page** - profile card, current role, social links, and featured content
 - **Skills page** - categorized expertise organized by skill area, with optional certifications
 - **Resume page** - collapsible sections for work experience, education, and community involvement
-- **Fully themeable** - 16 CSS color variables control the entire design
+- **Fully themeable** - 15 CSS color variables control the entire design
 - **Zero hardcoding** - everything in `src/config.js`, nothing in templates
 - **Global CDN** - deployed to Cloudflare Workers, served from ~300 edge locations worldwide
 - **Mobile-responsive** - bento grid adapts from 4 columns on desktop to 2 on mobile
@@ -67,7 +67,7 @@ Everything is in `src/config.js`. Here's what you can customize:
 
 ```javascript
 export const NAME = "Your Name";
-export const SUBTITLE = "Your headline";
+export const SUBTITLE = "First half ∙ Second half\nThird part ∙ Fourth part";  // Use \n to force a line break
 export const MOTTO = "Your tagline";
 export const BIO = "Longer description of who you are...";
 export const LOCATION = "City, State";
@@ -165,7 +165,7 @@ export const COMMUNITY = [
 
 ### Theme Colors
 
-Full control over the color palette. All 16 variables are used throughout.
+Full control over the color palette. All 15 variables are used throughout.
 
 ```javascript
 export const THEME = {
@@ -173,6 +173,7 @@ export const THEME = {
   bgCard: "#110d1c",        // Card background
   bgCardDark: "#0f0c1a",    // Darker cards (profile, currently)
   bgCardDeep: "#13102a",    // Deepest cards
+  bgToggle: "#1a1230",      // Active toggle button fill
   borderFaint: "#1e1530",   // Subtle borders
   border: "#2a1f45",        // Card borders
   borderAccent: "#3d2f5a",  // Highlight borders
@@ -211,7 +212,7 @@ The email is handled specially to avoid committing real addresses to Git:
 - **`.dev.vars`**: Local file (gitignored) with your real email for `wrangler dev`
 - **Wrangler secrets**: For production, run `wrangler secret put EMAIL` once to store securely in Cloudflare
 
-When someone clicks the email link, it's decoded from base64 and triggers a mailto.
+When someone clicks the email icon, the address is decoded from base64, a mailto is triggered, and the address is copied to clipboard with a brief "Copied!" tooltip — so users without a registered mail client still get something useful.
 
 ## Deployment
 
@@ -299,6 +300,7 @@ wrangler dev --port 8787
 **Email click doesn't work**
 - Check `.dev.vars` has `EMAIL=your@email.com` for local dev
 - For production, run `wrangler secret put EMAIL` before deploying
+- If no mail client is registered, the address is still copied to clipboard — the "Copied!" tooltip confirms it worked
 
 **Deploy fails**
 - Verify `wrangler.toml` has correct `zone_id` and domain
