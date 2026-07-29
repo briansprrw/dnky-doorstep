@@ -13,7 +13,7 @@
 
 import {
   NAME, JOB, BIO, MOTTO, SUBTITLE, EMAIL, AVATAR_URL, LOCATION, FOOTER_TEXT,
-  LINKS, SOCIAL_LINKS, CURRENTLY, SKILLS, CERTS, FEATURED_SKILLS, EXPERIENCE, COMMUNITY, EDUCATION,
+  LINKS, SOCIAL_LINKS, CURRENTLY, SKILLS, CERTS, FEATURED_SKILLS, EXPERIENCE, COMMUNITY, EDUCATION, PROJECTS,
   THEME,
 } from "./config.js";
 
@@ -204,6 +204,20 @@ function homePage(env = {}) {
       <span class="card-arrow">View full resume →</span>
     </a>` : "";
 
+  // Generate projects card
+  const projectsCard = PROJECTS.length > 0 ? `
+    <a href="/projects" class="bc bc-projects">
+      <span class="card-label">Recent Projects</span>
+      <div class="projects-grid">
+        ${PROJECTS.map(p => `
+        <div class="project-item">
+          <p class="project-title">${p.title}</p>
+          <p class="project-desc">${p.shortDesc}</p>
+        </div>`).join("")}
+      </div>
+      <span class="card-arrow" style="margin-top: 0.5rem;">View all projects →</span>
+    </a>` : "";
+
   // Generate social links HTML
   const socialLinksHtml = SOCIAL_LINKS.map(link => {
     if (link.logo) {
@@ -247,7 +261,7 @@ function homePage(env = {}) {
       grid-template-areas:
         "profile  profile  currently  currently"
         "profile  profile  skills     skills"
-        "github   linkedin email      calendly";
+        "projects projects projects   projects";
     }
 
     /* ---- Base card ---- */
@@ -276,11 +290,8 @@ function homePage(env = {}) {
     /* ---- Grid areas ---- */
     .bc-profile   { grid-area: profile;    background: ${THEME.bgCardDark}; justify-content: flex-end; }
     .bc-currently { grid-area: currently;  background: ${THEME.bgCardDark}; justify-content: space-between; }
-    .bc-github    { grid-area: github; }
-    .bc-linkedin  { grid-area: linkedin; }
-    .bc-email     { grid-area: email; }
     .bc-skills    { grid-area: skills;     background: ${THEME.bgCardDark}; }
-    .bc-calendly  { grid-area: calendly;   background: ${THEME.bgCardDeep}; }
+    .bc-projects  { grid-area: projects;   background: ${THEME.bgCardDark}; }
 
     /* ---- Profile card ---- */
     .profile-photo {
@@ -416,6 +427,33 @@ function homePage(env = {}) {
       white-space: nowrap;
     }
 
+    /* ---- Projects card ---- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .project-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .project-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: ${THEME.textCard};
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-size: 0.65rem;
+      color: ${THEME.textMuted};
+      line-height: 1.2;
+    }
+
     /* ---- Mobile: 2-column collapse ---- */
     @media (max-width: 600px) {
       .bento {
@@ -424,12 +462,15 @@ function homePage(env = {}) {
           "profile   profile"
           "currently currently"
           "skills    skills"
-          "github    linkedin"
-          "email     calendly";
+          "projects  projects";
       }
 
       .bc-profile { justify-content: flex-start; }
       .profile-name { font-size: 1.3rem; }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -453,6 +494,9 @@ function homePage(env = {}) {
 
     <!-- Dynamic link cards from LINKS config -->
     ${linkCards}
+
+    <!-- Projects card — optional, renders if PROJECTS is set -->
+    ${projectsCard}
 
   </div>
   <footer>${footerHtml}</footer>
@@ -584,6 +628,7 @@ function skillsPage() {
       ${pageHeader()}
       <nav class="page-toggle">
         <a href="/skills" class="toggle-btn active">🛠️ Skills</a>
+        <a href="/projects" class="toggle-btn">📦 Projects</a>
         <a href="/resume" class="toggle-btn">📄 Resume</a>
       </nav>
     </div>
@@ -592,6 +637,137 @@ function skillsPage() {
     <div class="certs-section">
       <h2 class="section-heading">Certifications</h2>
       <ul class="cert-list">${certItems}</ul>
+    </div>
+    ` : ""}
+  </div>
+  <footer>${FOOTER_TEXT}</footer>
+</body>
+</html>`;
+}
+
+
+// -----------------------------------------------------------------------------
+// PROJECTS PAGE RENDERER
+// -----------------------------------------------------------------------------
+
+function projectsPage() {
+  const projectsHtml = PROJECTS.length > 0 ? PROJECTS.map(({ title, subtitle, description, tags }) => `
+    <div class="project">
+      <h3 class="project-title">${title}</h3>
+      <p class="project-subtitle">${subtitle}</p>
+      <p class="project-description">${description}</p>
+      <div class="tags">
+        ${tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+      </div>
+    </div>`).join("") : "";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Projects — ${NAME}</title>
+  <style>
+    ${buildSharedStyles()}
+
+    body { align-items: flex-start; }
+
+    .page {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      color: ${THEME.textMuted};
+      transition: color 0.15s;
+    }
+
+    .back:hover { color: ${THEME.textMuted}; }
+
+    .section { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .section-heading {
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid ${THEME.borderFaint};
+    }
+
+    .project {
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid ${THEME.borderFaint};
+    }
+
+    .project:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: ${THEME.textCard};
+      margin-bottom: 0.25rem;
+    }
+
+    .project-subtitle {
+      font-size: 0.875rem;
+      color: ${THEME.textMuted};
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-description {
+      font-size: 0.875rem;
+      color: ${THEME.textTag};
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.35rem 0.85rem;
+      background: ${THEME.bgCard};
+      border: 1px solid ${THEME.border};
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: ${THEME.textTag};
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="page-top">
+      <a href="/" class="back">← Back</a>
+      ${pageHeader()}
+      <nav class="page-toggle">
+        <a href="/skills" class="toggle-btn">🛠️ Skills</a>
+        <a href="/projects" class="toggle-btn active">📦 Projects</a>
+        <a href="/resume" class="toggle-btn">📄 Resume</a>
+      </nav>
+    </div>
+
+    ${PROJECTS.length > 0 ? `
+    <div class="section">
+      <h2 class="section-heading">Projects</h2>
+      ${projectsHtml}
     </div>
     ` : ""}
   </div>
@@ -866,6 +1042,7 @@ function resumePage() {
       ${pageHeader()}
       <nav class="page-toggle">
         <a href="/skills" class="toggle-btn">🛠️ Skills</a>
+        <a href="/projects" class="toggle-btn">📦 Projects</a>
         <a href="/resume" class="toggle-btn active">📄 Resume</a>
       </nav>
     </div>
@@ -927,8 +1104,9 @@ export default {
 
     const isSkills = path === "/skills";
     const isResume = path === "/resume";
+    const isProjects = path === "/projects";
 
-    return new Response(isResume ? resumePage() : isSkills ? skillsPage() : homePage(env), {
+    return new Response(isResume ? resumePage() : isSkills ? skillsPage() : isProjects ? projectsPage() : homePage(env), {
       headers: {
         "Content-Type": "text/html;charset=UTF-8",
         "Cache-Control": "public, max-age=3600",

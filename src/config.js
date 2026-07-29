@@ -35,6 +35,42 @@ export const LINKS = [
 ];
 
 // =============================================================================
+// Projects (projects page + home bento card)
+// Empty array hides the section entirely
+// =============================================================================
+
+export const PROJECTS = [
+  {
+    title: "Endpoint Configuration as Code",
+    subtitle: "Internal PowerShell Module",
+    description: "Designed and developed a PowerShell-based infrastructure-as-code system for endpoint management, wrapping a commercial patch-management platform's REST API. Applied Microsoft-style cmdlet conventions to provide a declarative, version-controlled interface for automation, reporting, and endpoint lifecycle operations.",
+    shortDesc: "Terraform-like endpoint automation",
+    tags: ["PowerShell", "REST APIs", "Infrastructure as Code", "Patch Management"],
+  },
+  {
+    title: "Dnky Doorstep",
+    subtitle: "Personal Website Template",
+    description: "Designed and built a fast, configurable personal website template on Cloudflare Workers. Centralized profile, skills, résumé, projects, links, and visual theming in a single configuration file without requiring a database or traditional build pipeline.",
+    shortDesc: "Config-driven personal website",
+    tags: ["JavaScript", "Cloudflare Workers", "HTML/CSS", "Config-driven"],
+  },
+  {
+    title: "Dashboard",
+    subtitle: "Task Management System",
+    description: "Rebuilding a long-running personal task-management system as a secure, multi-user Cloudflare application. Designed the product architecture, authentication, role-based authorization, private-content boundaries, testing strategy, and milestone-driven implementation process.",
+    shortDesc: "Multi-user task management app",
+    tags: ["Node.js", "Cloudflare", "Authentication", "RBAC", "Product Design"],
+  },
+  {
+    title: "PrideFest Community Artist Wishlist",
+    subtitle: "Mobile Voting Application",
+    description: "Designed and built a mobile-first application for collecting and ranking artist suggestions from the PrideFest community. Supports authenticated voting, moderated submissions, duplicate merging, audit history, data exports, and a security-focused Cloudflare architecture.",
+    shortDesc: "Mobile voting application",
+    tags: ["Mobile-first", "Cloudflare", "Authentication", "Data Export", "Security"],
+  },
+];
+
+// =============================================================================
 // Currently (home page "Currently" bento card)
 // Set to null to hide this card entirely
 // =============================================================================
@@ -57,15 +93,15 @@ export const SKILLS = [
   },
   {
     category: "Identity & Security",
-    items: ["Microsoft Entra ID", "Active Directory", "Zero Trust", "Conditional Access", "Multi-Factor Authentication (MFA)", "Azure AD SSO", "Privileged Identity Management (PIM)", "Azure RBAC", "Active Directory Federation Services (ADFS)", "Defender for Endpoint", "Google Cloud Identity", "FIDO2 / Passwordless", "Windows Hello for Business", "BitLocker", "DigiCert / PKI", "SOX Compliance"],
+    items: ["Microsoft Entra ID", "Active Directory", "Zero Trust", "Conditional Access", "Multi-Factor Authentication (MFA)", "Azure AD SSO", "Privileged Identity Management (PIM)", "Azure RBAC", "Active Directory Federation Services (ADFS)", "Defender for Endpoint", "Google Cloud Identity", "FIDO2 / Passwordless", "Windows Hello for Business", "BitLocker", "DigiCert / PKI", "SOX Compliance", "SCIM", "SAML"],
   },
   {
     category: "Collaboration & Productivity",
-    items: ["Microsoft 365", "Google Workspace", "Microsoft Teams", "Exchange Online", "SharePoint Online", "OneDrive", "M365 Governance", "Tenant Configuration & Hardening", "Microsoft Purview", "Purview DLP & AIP", "eDiscovery", "Google Vault", "Teams Telephony", "Teams Rooms", "Adobe Admin Console", "AudioCodes Session Border Controller (SBC)", "Smartsheet", "Lucidchart"],
+    items: ["Microsoft 365", "Google Workspace", "Microsoft Teams", "Exchange Online", "SharePoint Online", "OneDrive", "M365 Governance", "Tenant Configuration & Hardening", "Microsoft Purview", "Purview DLP & AIP", "eDiscovery", "Google Vault", "Teams Telephony", "Teams Rooms", "Adobe Admin Console", "AudioCodes Session Border Controller (SBC)", "Smartsheet", "Lucidchart", "Slack"],
   },
   {
     category: "Development & Automation",
-    items: ["PowerShell", "REST APIs", "Power Automate", "Azure Automation / Runbooks", "Power Platform", "Google Workspace APIs", "Google Directory API", "Google Apps Script", "JavaScript", "Node.js", "PowerApps", "SQL", "Google Sheets API", "Google OAuth", "Adobe User Management API (UMAPI)", "Confluence", "Jira", "Linear", "Tesseract OCR"],
+    items: ["PowerShell", "REST APIs", "Power Automate", "Azure Automation / Runbooks", "Power Platform", "Google Workspace APIs", "Google Directory API", "Google Apps Script", "JavaScript", "Node.js", "PowerApps", "SQL", "Google Sheets API", "Google OAuth", "Adobe User Management API (UMAPI)", "Confluence", "Jira", "Linear", "Tesseract OCR", "Microsoft Graph API"],
   },
   {
     category: "AI & Copilot",
@@ -81,7 +117,7 @@ export const SKILLS = [
   },
   {
     category: "Analytics & Reporting",
-    items: ["Microsoft Graph API", "Power BI", "Power Query", "Nexthink", "Jamf API"],
+    items: ["Power BI", "Power Query", "Nexthink", "Jamf API"],
   },
 ];
 
@@ -107,11 +143,11 @@ export const EXPERIENCE = [
     title: "Staff Engineer, Workplace Technology",
     dates: "Sept 2024 – Present",
     bullets: [
-      { label: "Enterprise Workplace Delivery", detail: "Led execution of enterprise Modern Workplace initiatives across Microsoft 365, Google Workspace, endpoint management, and collaboration platforms, focusing on delivery quality, risk management, and long-term operability in a large, globally distributed organization." },
-      { label: "Carve-Out Execution (Versant)", detail: "Served as the technical lead for the Modern Workplace scope of a major corporate carve-out, delivering separation and day-one readiness of core workplace services for ~5,000 employees as part of a newly standalone, multi-billion-dollar business." },
-      { label: "Platform & Operating Model Design", detail: "Designed and implemented the device lifecycle, management, and compliance operating model used to transition workplace services into steady-state operations post-separation." },
-      { label: "Technical Decision-Making", detail: "Made and drove core architectural decisions across identity, Microsoft 365, and device platforms, resolving cross-team dependencies and execution blockers during high-pressure delivery windows." },
-      { label: "Enterprise Direction & Planning", detail: "Applied lessons from large-scale delivery and the Versant carve-out to inform future workplace platform direction, operating model evolution, and modernization sequencing across NBCUniversal." },
+      { label: "Enterprise Workplace Delivery", detail: "Leads transformational Modern Workplace initiatives across Microsoft 365, Google Workspace, endpoint management, and collaboration platforms, balancing hands-on delivery with platform strategy and business impact across a large, globally distributed organization." },
+      { label: "Carve-Out Execution (Versant)", detail: "Served as technical lead for the Modern Workplace scope of a major corporate carve-out, designing and delivering the device lifecycle, compliance, and operating model that enabled day-one readiness for ~5,000 employees at a newly standalone, multi-billion-dollar business." },
+      { label: "Technical Decision-Making", detail: "Makes and drives core architectural decisions across identity, Microsoft 365, and device platforms, resolving cross-team dependencies and execution blockers during high-pressure delivery windows." },
+      { label: "Platform Automation & Governance", detail: "Builds and maintains PowerShell automation against Microsoft Graph API to enforce tenant configuration, automate provisioning workflows, and surface compliance drift across identity and collaboration platforms, extending governance beyond what admin consoles expose." },
+      { label: "Cross-Functional Stakeholder Engagement", detail: "Works directly with Cyber, business stakeholders, and technical teams across the organization to align workplace platform decisions with security requirements, business priorities, and operational needs." },
     ],
   },
   {
@@ -121,7 +157,7 @@ export const EXPERIENCE = [
     bullets: [
       { label: "Transformation Delivery", detail: "Led Microsoft 365, Exchange, and SharePoint transformations, improving licensing posture, security, and productivity outcomes for client organizations." },
       { label: "Platform Strategy", detail: "Established roadmaps for modern workplace platforms, aligning delivery plans to business priorities." },
-      { label: "Hands-On Technical Leadership", detail: "Designed and deployed Intune-based device management solutions, integrating with existing client infrastructure to support scalable operations." },
+      { label: "Hands-On Technical Leadership", detail: "Designed and deployed Intune-based device management solutions and built PowerShell automation against Microsoft Graph API to streamline provisioning and configuration management for client environments." },
     ],
   },
   {
@@ -131,7 +167,7 @@ export const EXPERIENCE = [
     bullets: [
       { label: "Client-Facing Transformation & Opportunity Wins", detail: "Served as technical lead on enterprise transformation pursuits, directly supporting opportunities won totaling $3.5M in 2023 and $4M+ in Q1 2024." },
       { label: "Program Execution", detail: "Led global teams delivering large-scale Microsoft 365 and Google Workspace migrations and modernization programs, including tenant architecture, data migration, and identity configuration across multiple enterprise clients." },
-      { label: "Architecture & Advisory Role", detail: "Guided clients and internal teams on tenant design, security posture, collaboration strategy, and modern management." },
+      { label: "Architecture & Standards", detail: "Guided clients on tenant design, security posture, and collaboration governance, including authoring information protection standards, DLP policy frameworks, and data classification models across Microsoft 365 and Google Workspace environments." },
     ],
   },
   {
@@ -140,7 +176,7 @@ export const EXPERIENCE = [
     dates: "Mar 2020 – June 2022",
     bullets: [
       { label: "Senior Technical Ownership", detail: "Served as lead engineer for identity, collaboration, and workplace platforms, operating as the primary escalation point for complex issues impacting security and reliability." },
-      { label: "Identity & Platform Modernization", detail: "Owned ADFS-to-Entra ID migrations and Office 365 adoption, including SSO integrations and endpoint onboarding." },
+      { label: "Identity & Platform Modernization", detail: "Owned ADFS-to-Entra ID migration and Office 365 adoption, configuring SSO federation and SCIM provisioning for enterprise application onboarding including Slack, and managing endpoint onboarding across the identity boundary." },
       { label: "Execution at Scale", detail: "Led full-scale Office 365 migrations across Azure AD, Teams, OneDrive, and Intune with JAMF integration, supporting secure enterprise-wide adoption." },
     ],
   },
