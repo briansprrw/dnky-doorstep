@@ -63,7 +63,8 @@ export const PROJECTS = [
     description: "Rebuilding a long-running personal task-management system as a secure, multi-user Cloudflare application. Designed the product architecture, authentication, role-based authorization, private-content boundaries, testing strategy, and milestone-driven implementation process.",
     shortDesc: "Multi-user task management app",
     tags: ["Node.js", "Cloudflare", "Authentication", "RBAC", "Product Design"],
-    url: "https://dashboard-v2.briansprrw.workers.dev",
+    url: "https://github.com/briansprrw/dashboard-v2",
+    status: "V2 Under Development",
   },
   {
     title: "PrideFest Community Artist Wishlist",
@@ -72,6 +73,7 @@ export const PROJECTS = [
     shortDesc: "Mobile voting application",
     tags: ["Mobile-first", "Cloudflare", "Authentication", "Data Export", "Security"],
     url: null,
+    status: "Unreleased - Under Development",
   },
 ];
 

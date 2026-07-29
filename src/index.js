@@ -651,11 +651,12 @@ function skillsPage() {
 // -----------------------------------------------------------------------------
 
 function projectsPage() {
-  const projectsHtml = PROJECTS.length > 0 ? PROJECTS.map(({ title, subtitle, description, tags, url, isInternal }) => `
+  const projectsHtml = PROJECTS.length > 0 ? PROJECTS.map(({ title, subtitle, description, tags, url, isInternal, status }) => `
     <div class="project">
       <div style="display: flex; align-items: baseline; gap: 0.75rem;">
         <h3 class="project-title">${title}</h3>
         ${isInternal ? `<span style="font-size: 0.75rem; color: ${THEME.textMuted}; font-style: italic;">NBCU Internal</span>` : url ? `<a href="${url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: ${THEME.accent};">→ View</a>` : ""}
+        ${status ? `<span style="font-size: 0.75rem; color: ${THEME.textMuted}; font-style: italic;">${status}</span>` : ""}
       </div>
       <p class="project-subtitle">${subtitle}</p>
       <p class="project-description">${description}</p>
