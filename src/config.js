@@ -47,6 +47,7 @@ export const PROJECTS = [
     shortDesc: "Terraform-like endpoint automation",
     tags: ["PowerShell", "REST APIs", "Infrastructure as Code", "Patch Management"],
     url: null,
+    isInternal: true,
   },
   {
     title: "Dnky Doorstep",
@@ -62,7 +63,7 @@ export const PROJECTS = [
     description: "Rebuilding a long-running personal task-management system as a secure, multi-user Cloudflare application. Designed the product architecture, authentication, role-based authorization, private-content boundaries, testing strategy, and milestone-driven implementation process.",
     shortDesc: "Multi-user task management app",
     tags: ["Node.js", "Cloudflare", "Authentication", "RBAC", "Product Design"],
-    url: null,
+    url: "https://dashboard-v2.briansprrw.workers.dev",
   },
   {
     title: "PrideFest Community Artist Wishlist",
