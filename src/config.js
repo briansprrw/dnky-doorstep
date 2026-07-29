@@ -46,6 +46,7 @@ export const PROJECTS = [
     description: "Designed and developed a PowerShell-based infrastructure-as-code system for endpoint management, wrapping a commercial patch-management platform's REST API. Applied Microsoft-style cmdlet conventions to provide a declarative, version-controlled interface for automation, reporting, and endpoint lifecycle operations.",
     shortDesc: "Terraform-like endpoint automation",
     tags: ["PowerShell", "REST APIs", "Infrastructure as Code", "Patch Management"],
+    url: null,
   },
   {
     title: "Dnky Doorstep",
@@ -53,13 +54,15 @@ export const PROJECTS = [
     description: "Designed and built a fast, configurable personal website template on Cloudflare Workers. Centralized profile, skills, résumé, projects, links, and visual theming in a single configuration file without requiring a database or traditional build pipeline.",
     shortDesc: "Config-driven personal website",
     tags: ["JavaScript", "Cloudflare Workers", "HTML/CSS", "Config-driven"],
+    url: "https://github.com/briansprrw/dnky-doorstep",
   },
   {
     title: "Dashboard",
-    subtitle: "Task Management System",
+    subtitle: "Task Management System (NBCU Internal)",
     description: "Rebuilding a long-running personal task-management system as a secure, multi-user Cloudflare application. Designed the product architecture, authentication, role-based authorization, private-content boundaries, testing strategy, and milestone-driven implementation process.",
     shortDesc: "Multi-user task management app",
     tags: ["Node.js", "Cloudflare", "Authentication", "RBAC", "Product Design"],
+    url: null,
   },
   {
     title: "PrideFest Community Artist Wishlist",
@@ -67,6 +70,7 @@ export const PROJECTS = [
     description: "Designed and built a mobile-first application for collecting and ranking artist suggestions from the PrideFest community. Supports authenticated voting, moderated submissions, duplicate merging, audit history, data exports, and a security-focused Cloudflare architecture.",
     shortDesc: "Mobile voting application",
     tags: ["Mobile-first", "Cloudflare", "Authentication", "Data Export", "Security"],
+    url: null,
   },
 ];
 
